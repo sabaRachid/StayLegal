@@ -1,0 +1,108 @@
+{
+  "CAQ": {
+    "conditions": [
+      "Lettre d’admission à un établissement d’enseignement désigné (EED)",
+      "Passeport valide",
+      "Preuve financière suffisante"
+    ],
+    "documents": [
+      "Lettre d’admission",
+      "Passeport",
+      "Preuve financière (devis, relevé bancaire, etc.)"
+    ],
+    "frais": 132,
+    "delai": "Environ 25 jours ouvrables",
+    "renouvellement": {
+      "requis": true,
+      "documents_additionnels": [
+        "Relevé de notes",
+        "Nouvelle lettre d’admission"
+      ]
+    },
+    "portail": "https://www.quebec.ca/immigration"
+  },
+  "PermisEtudes": {
+    "conditions": [
+      "Lettre d’admission",
+      "CAQ valide (pour Québec)",
+      "Preuve financière",
+      "Passeport valide"
+    ],
+    "frais": {
+      "permis_etudes": 150,
+      "biometrie": 85
+    },
+    "delai": "Varie selon le pays (~1 à 12 semaines)",
+    "site_ircc": "https://www.canada.ca/fr/immigration-refugies-citoyennete.html"
+  },
+  "RAMQ": {
+    "pays_admissibles": [
+      "France",
+      "Belgique",
+      "Luxembourg",
+      "Roumanie",
+      "Portugal",
+      "Suède",
+      "Grèce",
+      "Danemark",
+      "Norvège",
+      "Finlande"
+    ],
+    "documents": [
+      "Passeport",
+      "CAQ",
+      "Permis d’études",
+      "Attestation d’inscription",
+      "Attestation de couverture sécurité sociale"
+    ],
+    "renouvellement": true,
+    "assurance_privee": {
+      "requis_si_non_eligible": true,
+      "fourni_par_universite": true,
+      "couvre": [
+        "Consultations",
+        "Hospitalisation",
+        "Médicaments"
+      ],
+      "non_couvert": [
+        "Dentaire",
+        "Optique",
+        "Grossesse"
+      ]
+    }
+  },
+  "NAS": {
+    "conditions": [
+      "Permis d’études valide avec mention d'autorisation de travail",
+      "Être au Canada"
+    ],
+    "documents": [
+      "Permis d’études",
+      "Passeport",
+      "Preuve d’adresse locale"
+    ],
+    "frais": 0,
+    "validite": "Durée du permis d’études",
+    "renouvellement": "À chaque renouvellement de permis",
+    "site_demande": "https://www.canada.ca/fr/emploi-developpement-social/services/nas/demande.html"
+  },
+  "PTPD": {
+    "conditions": [
+      "Diplôme d’un EED éligible",
+      "Durée des études ≥ 8 mois",
+      "Inscription à temps plein (sauf dernière session)",
+      "Permis d’études valide au moment de la demande"
+    ],
+    "documents": [
+      "Diplôme ou attestation",
+      "Relevé de notes",
+      "Lettre de fin d’études",
+      "Passeport",
+      "Permis d’études"
+    ],
+    "frais": 255,
+    "delai": "Varie selon le volume de traitement IRCC (~3 à 8 semaines)",
+    "valide_jusqua": "1 à 3 ans (selon durée des études)",
+    "site_ircc": "https://www.canada.ca/fr/immigration-refugies-citoyennete/services/permis-travail/apres-etudes.html"
+  }
+}
