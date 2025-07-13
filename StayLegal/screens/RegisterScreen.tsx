@@ -1,5 +1,3 @@
-// screens/LoginScreen.tsx
-
 import React, { useState } from 'react';
 import {
   View,
@@ -11,21 +9,23 @@ import {
   Platform,
   Alert
 } from 'react-native';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../utils/firebase';
+import { useRouter } from 'expo-router';
 
-export default function LoginScreen() {
+export default function RegisterScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const router = useRouter();
 
-  const handleLogin = async () => {
+  const handleRegister = async () => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      // navigation.replace('Accueil'); // plus nécessaire si géré dans _layout.tsx
+      await createUserWithEmailAndPassword(auth, email, password);
+      router.replace('/home');
     } catch (err) {
-      setError('Connexion échouée. Vérifie tes informations.');
-      Alert.alert('Erreur', 'Email ou mot de passe incorrect.');
+      setError('Erreur lors de la création du compte.');
+      Alert.alert('Erreur', 'Impossible de créer le compte. Vérifie tes infos.');
     }
   };
 
@@ -35,7 +35,7 @@ export default function LoginScreen() {
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
       <View style={styles.innerContainer}>
-        <Text style={styles.title}>Connexion à StayLegal</Text>
+        <Text style={styles.title}>Créer un compte</Text>
 
         <TextInput
           placeholder="Adresse email"
@@ -56,8 +56,8 @@ export default function LoginScreen() {
 
         {error ? <Text style={styles.error}>{error}</Text> : null}
 
-        <TouchableOpacity style={styles.button} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Se connecter</Text>
+        <TouchableOpacity style={styles.button} onPress={handleRegister}>
+          <Text style={styles.buttonText}>Créer mon compte</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   button: {
-    backgroundColor: '#0066cc',
+    backgroundColor: '#00aa77',
     paddingVertical: 14,
     borderRadius: 6,
     alignItems: 'center',

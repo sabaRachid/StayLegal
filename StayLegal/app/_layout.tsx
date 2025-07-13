@@ -1,29 +1,39 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
-
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { Slot, useRouter, useSegments } from 'expo-router';
+import { useEffect, useState } from 'react';
+import { onAuthStateChanged, User } from 'firebase/auth';
+import { auth } from '../utils/firebase';
 
 export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+  const segments = useSegments();
+  const router = useRouter();
 
-  if (!loaded) {
-    // Async font loading only occurs in development.
-    return null;
-  }
+  // 🔐 Écoute l'état de connexion Firebase
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (u) => {
+      setUser(u);
+      setLoading(false);
+    });
+    return () => unsubscribe();
+  }, []);
 
-  return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
-  );
+  // 🔁 Logique de redirection en fonction du statut utilisateur
+  useEffect(() => {
+    const isPublic = segments[0] === null || segments[0] === 'login' || segments[0] === 'register';
+
+    if (!loading) {
+      if (!user && !isPublic) {
+        setTimeout(() => router.replace('/'), 0); // redirige vers Welcome
+      }
+
+      if (user && isPublic) {
+        setTimeout(() => router.replace('/home'), 0); // redirige vers Home connecté
+      }
+    }
+  }, [user, segments, loading]);
+
+  if (loading) return null;
+
+  return <Slot />;
 }
