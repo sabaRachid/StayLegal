@@ -20,7 +20,10 @@ export default function RootLayout() {
 
   // 🔁 Logique de redirection en fonction du statut utilisateur
   useEffect(() => {
-    const isPublic = segments[0] === null || segments[0] === 'login' || segments[0] === 'register';
+    const isPublic =
+      segments[0] === null ||
+      segments[0] === 'login' ||
+      segments[0] === 'register';
 
     if (!loading) {
       if (!user && !isPublic) {

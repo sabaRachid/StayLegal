@@ -7,7 +7,7 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   Platform,
-  Alert
+  Alert,
 } from 'react-native';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../utils/firebase';
@@ -25,7 +25,10 @@ export default function RegisterScreen() {
       router.replace('/home');
     } catch (err) {
       setError('Erreur lors de la création du compte.');
-      Alert.alert('Erreur', 'Impossible de créer le compte. Vérifie tes infos.');
+      Alert.alert(
+        'Erreur',
+        'Impossible de créer le compte. Vérifie tes infos.',
+      );
     }
   };
 

@@ -1,7 +1,16 @@
 {
+  // Active le formatage automatique à la sauvegarde
+  "editor.formatOnSave": true,
+
+  // Actions à lancer à la sauvegarde
   "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
+    // Lance ESLint pour corriger tout ce qu'il peut corriger
+    "source.fixAll.eslint": true,
+    // Garde tes autres actions (imports, tri de membres)
     "source.organizeImports": "explicit",
     "source.sortMembers": "explicit"
-  }
+  },
+
+  // Pour que VSCode applique ESLint sur ces langages
+  "eslint.validate": ["javascript", "typescript", "typescriptreact"]
 }

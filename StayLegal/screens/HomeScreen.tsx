@@ -12,13 +12,15 @@ export default function HomeScreen() {
       await signOut(auth);
       // App.tsx redirigera automatiquement vers LoginScreen
     } catch (error) {
-      console.error("Erreur lors de la déconnexion :", error);
+      console.error('Erreur lors de la déconnexion :', error);
     }
   };
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text style={{ marginBottom: 20, fontSize: 18 }}>Bienvenue sur StayLegal 🎓</Text>
+      <Text style={{ marginBottom: 20, fontSize: 18 }}>
+        Bienvenue sur StayLegal 🎓
+      </Text>
       <Button mode="contained" onPress={handleLogout}>
         Déconnexion
       </Button>
