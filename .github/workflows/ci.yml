@@ -22,10 +22,16 @@ jobs:
           cache-dependency-path: ./StayLegal/package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          cd StayLegal
+          npm ci
 
       - name: Lint code
-        run: npm run lint
+        run: |
+          cd StayLegal
+          npm run lint
 
       - name: Type-check
-        run: npx tsc --noEmit
+        run: |
+          cd StayLegal
+          npx tsc --noEmit
